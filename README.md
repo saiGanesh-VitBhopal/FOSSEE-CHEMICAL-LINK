@@ -30,43 +30,6 @@ Both the **React Web App** and **PyQt5 Desktop App** use a **common Django backe
 - **PDF:** ReportLab  
 
 ---
-
-## 📂 Project Structure
-
-```txt
-chemical-equipment-visualizer/
-│
-├── backend/               # Django backend (API + PDF + history)
-│   ├── api/
-│   ├── config/
-│   ├── media/
-│   ├── manage.py
-│   └── requirements.txt
-│
-├── desktop-app/           # PyQt5 desktop application
-│   ├── venv/
-│   ├── main.py
-│   └── requirements.txt
-│
-├── fontened/              # React web app (your folder name)
-│   ├── node_modules/
-│   ├── public/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── api.js
-│   │   ├── App.jsx
-│   │   ├── Login.jsx
-│   │   ├── main.jsx
-│   │   ├── styles.css
-│   │   ├── App.css
-│   │   └── index.css
-│   ├── package.json
-│   └── vite.config.js
-│
-└── README.md
-
-
 🔧 Backend (Django)
 
 cd backend
@@ -118,4 +81,42 @@ Auto-clean temporary chart files
 👤 Author
 
 Nagamalla Sai Ganesh
+
+
+
+## 📂 Project Structure
+
+```txt
+chemical-equipment-visualizer/
+│
+├── backend/               # Django backend (API + PDF + history)
+│   ├── api/
+│   ├── config/
+│   ├── media/
+│   ├── manage.py
+│   └── requirements.txt
+│
+├── desktop-app/           # PyQt5 desktop application
+│   ├── venv/
+│   ├── main.py
+│   └── requirements.txt
+│
+├── fontened/              # React web app (your folder name)
+│   ├── node_modules/
+│   ├── public/
+│   ├── src/
+│   │   ├── assets/
+│   │   ├── components/
+│   │   ├── api.js
+│   │   ├── App.jsx
+│   │   ├── Login.jsx
+│   │   ├── main.jsx
+│   │   ├── styles.css
+│   │   ├── App.css
+│   │   └── index.css
+│   ├── package.json
+│   └── vite.config.js
+│
+└── README.md
+
 
