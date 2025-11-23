@@ -1,95 +1,19 @@
-# Chemical Equipment Parameter Visualizer  
-Hybrid Web + Desktop Application  
-React.js • PyQt5 • Django REST Framework
+# Chemical Equipment Parameter Visualizer (FOSSEE Project)
 
-## 🔍 Overview
-A hybrid application that allows users to upload CSV files containing chemical equipment parameters and visualize the data through charts, tables, and PDF reports.  
-Both the **React Web App** and **PyQt5 Desktop App** use a **common Django backend**.
+A hybrid full-stack application for visualizing chemical equipment parameters, built using:
 
----
-
-## 🚀 Features
-- CSV Upload (Web + Desktop)
-- Summary statistics (count + averages)
-- Type distribution chart  
-  - Web → Chart.js  
-  - Desktop → Matplotlib  
-- Data preview table
-- PDF report generation (ReportLab + Matplotlib)
-- History: keeps last 5 datasets
-- Simple login + logout for Web
+- **Django REST API backend**
+- **React + Vite web frontend**
+- **PyQt5 desktop application**
 
 ---
 
-## 🧩 Tech Stack
-- **Frontend (Web):** React + Vite + Chart.js  
-- **Frontend (Desktop):** PyQt5 + Matplotlib  
-- **Backend:** Django + DRF  
-- **Database:** SQLite  
-- **Data Processing:** Pandas  
-- **PDF:** ReportLab  
+## 📁 Folder Structure
 
----
-🔧 Backend (Django)
-
-cd backend
-python -m venv venv
-venv/Scripts/activate
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
-
-
-🌐 Web App (React)
-
-cd fontened
-npm install
-npm run dev
-
-
-
-🖥 Desktop App (PyQt5)
-
-
-cd desktop-app
-pip install -r requirements.txt
-python main.py
-
-
-📌 API Endpoints
-
-
-| Method | Endpoint             | Description         |
-| ------ | -------------------- | ------------------- |
-| POST   | `/api/upload/`       | Upload CSV          |
-| GET    | `/api/history/`      | Last 5 datasets     |
-| GET    | `/api/summary/<id>/` | Summary for dataset |
-| GET    | `/api/report/<id>/`  | PDF Report          |
-
-
-📝 PDF Report Includes
-
-Dataset info
-
-Summary statistics
-
-Type distribution bar chart
-
-Auto-clean temporary chart files
-
-
-👤 Author
-
-Nagamalla Sai Ganesh
-
-
-
-## 📂 Project Structure
-
-```txt
+```
 chemical-equipment-visualizer/
 │
-├── backend/               # Django backend (API + PDF + history)
+├── backend/               # Django REST API + PDF generation
 │   ├── api/
 │   ├── config/
 │   ├── media/
@@ -97,26 +21,162 @@ chemical-equipment-visualizer/
 │   └── requirements.txt
 │
 ├── desktop-app/           # PyQt5 desktop application
-│   ├── venv/
 │   ├── main.py
-│   └── requirements.txt
+│   ├── requirements.txt
+│   └── venv/
 │
-├── fontened/              # React web app (your folder name)
-│   ├── node_modules/
+├── fontened/              # React + Vite frontend (your folder name)
 │   ├── public/
 │   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── api.js
-│   │   ├── App.jsx
-│   │   ├── Login.jsx
-│   │   ├── main.jsx
-│   │   ├── styles.css
-│   │   ├── App.css
-│   │   └── index.css
 │   ├── package.json
 │   └── vite.config.js
 │
 └── README.md
+```
 
+---
 
+# 🚀 1. Backend Setup (Django — Windows PowerShell)
+
+### 📌 Navigate to backend
+```powershell
+cd backend
+```
+
+### 📌 Create virtual environment
+```powershell
+python -m venv venv
+```
+
+### 📌 Activate virtual environment  
+(PowerShell may block scripts, so we allow only this session.)
+
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+.env\Scripts\Activate.ps1
+```
+
+### 📌 Install backend dependencies
+```powershell
+pip install django djangorestframework django-cors-headers pandas reportlab matplotlib pillow
+```
+
+### 📌 Run migrations
+```powershell
+python manage.py migrate
+```
+
+### (Optional) Create superuser
+```powershell
+python manage.py createsuperuser
+```
+
+### 📌 Start backend server
+```powershell
+python manage.py runserver
+```
+
+Backend URLs:
+- API Base → http://127.0.0.1:8000/api/
+- Admin Panel → http://127.0.0.1:8000/admin/
+
+---
+
+# 🖥 2. Desktop Application Setup (PyQt5)
+
+### 📌 Go to desktop app folder
+```powershell
+cd desktop-app
+```
+
+### 📌 Create virtual environment
+```powershell
+python -m venv venv
+```
+
+### 📌 Activate environment
+```powershell
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+.env\Scripts\Activate.ps1
+```
+
+### 📌 Install desktop dependencies
+```powershell
+pip install PyQt5 requests pandas numpy matplotlib
+```
+
+### 📌 Run desktop application
+```powershell
+python main.py
+```
+
+> **Backend MUST be running before launching the desktop app.**
+
+---
+
+# 🌐 3. Web Frontend Setup (React + Vite)
+
+### 📌 Navigate to frontend
+```powershell
+cd fontened
+```
+
+### 📌 Install node modules
+```powershell
+npm install
+```
+
+### 📌 Create API environment file
+Create:
+
+```
+fontened/.env.development
+```
+
+Add this line:
+
+```
+VITE_API_BASE_URL=http://127.0.0.1:8000/api
+```
+
+### 📌 Start development server
+```powershell
+npm run dev
+```
+
+Frontend URL →  
+**http://localhost:5173**
+
+---
+
+## 🔐 Login Information  
+Your project uses a **simple dummy login** (frontend-only):
+
+- Any username ✔  
+- Any password ✔  
+
+---
+
+# 📌 Usage Instructions
+
+1️⃣ Start the **Django backend**  
+2️⃣ Start **React web app** OR **Desktop app**  
+3️⃣ Upload CSV files  
+4️⃣ View:  
+- Summary statistics  
+- Charts  
+- Preview table  
+- PDF report  
+5️⃣ History auto-stores last 5 uploads
+
+Both frontend clients use this API root:
+
+```
+http://127.0.0.1:8000/api
+```
+
+---
+
+# 👤 Author
+**Nagamalla Sai Ganesh**  
+FOSSEE Chemical Visualization Project Submission
